@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #container,
+        #box,
+        #target {
+            border: 1px solid;
+        }
+        #container {
+            width: 300px;
+            height: 150px;
+        }
+        #box {
+            width: 200px;
+            height: 100px;
+        }
+        #target {
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        container
+        <div id="box">
+            box
+            <div id="target">target</div>
+        </div>
+    </div>
+    <script>
+        var container = document.querySelector('#container');
+        var box = document.querySelector('#box');
+        var target = document.querySelector('#target');
+        var phases = {
+        1: 'capture',
+        2: 'target',
+        3: 'bubble'
+        };
+        //
+        function callback(event){
+            var tag = event.currentTarget.id;
+            var phase = phases[event.eventPhase];
+            console.log(tag+' '+phase);
+        }
+
+        container.addEventListener('click',callback,true);
+        box.addEventListener('click',callback,true);
+        target.addEventListener('click',callback,true);
+        container.addEventListener('click',callback,false);
+        box.addEventListener('click',callback,false);
+        target.addEventListener('click',callback,false);
+    </script>
+</body>
+</html>
